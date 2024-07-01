@@ -10,8 +10,8 @@ scripts:
   get:
     run: flutter pub get
   generate:
-    run: flutter pub run build_runner build --delete-conflicting-outputs
+    run: dart pub run build_runner build -d
   intl:
     run: flutter pub run intl_utils:generate
   format:
-    run: flutter format .
+    run: dart format .
