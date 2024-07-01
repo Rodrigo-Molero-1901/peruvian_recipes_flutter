@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "494687319567",
+    "project_id": "peruvian-recipes-1cc50",
+    "storage_bucket": "peruvian-recipes-1cc50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494687319567:android:1decc2e15fbc34f46a957a",
+        "android_client_info": {
+          "package_name": "com.ramc.recipes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1uR7WDKkUb6eWxdpRwFUYy6Ebuwbw4aM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
