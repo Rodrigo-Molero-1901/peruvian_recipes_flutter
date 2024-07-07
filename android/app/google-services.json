@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "494687319567-b3hgnmdufkbuk18k5cpgvg9vs0gfltur.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ramc.recipes.peruvian_recipes_flutter",
+            "certificate_hash": "561d524cd7f8e23844cda8b7fe6f77ccb346904e"
+          }
+        },
+        {
+          "client_id": "494687319567-im6stcm4nv93gn5oscdfubb3cl14k467.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ramc.recipes.peruvian_recipes_flutter",
+            "certificate_hash": "26ec44f27f0d73787951008b7de8756262355dc7"
+          }
+        },
+        {
           "client_id": "494687319567-isjs0md7fmtuskmmr079u6jrtidrmc71.apps.googleusercontent.com",
           "client_type": 3
         }

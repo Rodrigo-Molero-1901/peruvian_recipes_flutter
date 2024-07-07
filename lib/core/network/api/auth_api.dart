@@ -1,13 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/base_response.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/login_response.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/registration_response.dart';
+import 'package:peruvian_recipes_flutter/shared/constants/app_fb_constants.dart';
 
 class AuthApi {
   final FirebaseAuth _firebaseAuth;
+  final FirebaseFirestore _firebaseFirestore;
 
-  AuthApi(this._firebaseAuth);
+  AuthApi(
+    this._firebaseAuth,
+    this._firebaseFirestore,
+  );
 
   Future<Response<RegistrationResponse>> registerWithCredentials(
       {required String email, required String password}) async {
@@ -18,9 +24,8 @@ class AuthApi {
         email: email,
         password: password,
       );
-      responseData?.id = response.user?.uid;
-      responseData?.displayName = response.user?.displayName;
-      responseData?.email = response.user?.email;
+      responseData = RegistrationResponse.fromUserCredential(response);
+      await _createUserInDatabase(response.user);
     } on FirebaseAuthException catch (_) {
       rethrow;
     }
@@ -40,6 +45,7 @@ class AuthApi {
         password: password,
       );
       responseData = LoginResponse.fromUserCredential(response);
+      await _createUserInDatabase(response.user);
     } on FirebaseAuthException catch (_) {
       rethrow;
     }
@@ -53,16 +59,19 @@ class AuthApi {
     LoginResponse? responseData;
 
     try {
-      final googleUser = await GoogleSignIn().signIn();
-      final googleAuth = await googleUser?.authentication;
-      final googleCredential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
-      final response = await _firebaseAuth.signInWithCredential(
-        googleCredential,
-      );
-      responseData = LoginResponse.fromUserCredential(response);
+      final googleUser = await GoogleSignIn(scopes: ['email']).signIn();
+      if (googleUser != null) {
+        final googleAuth = await googleUser.authentication;
+        final googleCredential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        final response = await _firebaseAuth.signInWithCredential(
+          googleCredential,
+        );
+        responseData = LoginResponse.fromUserCredential(response);
+        await _createUserInDatabase(response.user);
+      }
     } on FirebaseAuthException catch (_) {
       rethrow;
     }
@@ -70,6 +79,18 @@ class AuthApi {
     return Response<LoginResponse>(
       data: responseData,
     );
+  }
+
+  Future<void> _createUserInDatabase(User? user) async {
+    if (user != null) {
+      DocumentReference userDoc = _firebaseFirestore
+          .collection(AppFirebaseConstants.usersCollection)
+          .doc(user.uid);
+      DocumentSnapshot docSnapshot = await userDoc.get();
+      if (!docSnapshot.exists) {
+        await userDoc.set(<String, dynamic>{});
+      }
+    }
   }
 
   Future<bool> logout() async {

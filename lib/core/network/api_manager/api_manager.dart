@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:peruvian_recipes_flutter/core/network/api/api.dart';
@@ -8,7 +9,10 @@ class ApiManager {
   late Api _api;
 
   ApiManager() {
-    _api = Api(FirebaseAuth.instance);
+    _api = Api(
+      FirebaseAuth.instance,
+      FirebaseFirestore.instance,
+    );
   }
 
   AuthApiManager get authApiManager => AuthApiManager(_api);

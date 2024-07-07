@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:peruvian_recipes_flutter/core/router/router.dart';
 import 'package:peruvian_recipes_flutter/di/injection.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/blocs/auth_cubit.dart';
-import 'package:peruvian_recipes_flutter/features/authentication/presentation/viewmodels/auth_view_model.dart';
+import 'package:peruvian_recipes_flutter/features/authentication/presentation/utils/auth_view_model_extension.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/views/auth_main_view.dart';
 
 class AuthView extends StatefulWidget {
@@ -24,24 +22,6 @@ class _AuthViewState extends State<AuthView> {
     _authCubit.initialize();
   }
 
-  void _navigate(
-    AuthViewModel viewModel,
-    BuildContext context,
-  ) {
-    if (viewModel.navigation != null) {
-      switch (viewModel.navigation) {
-        case AuthRegisterNavigation():
-          break;
-        case AuthForgotPasswordNavigation():
-          break;
-        case AuthLoggedInNavigation():
-          context.push(Routes.pathHome, extra: viewModel.user);
-        default:
-          break;
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -51,7 +31,10 @@ class _AuthViewState extends State<AuthView> {
           case AuthLoading():
             break;
           case AuthMain(:final viewModel):
-            _navigate(viewModel, context);
+            {
+              viewModel.navigate(context);
+              viewModel.showOverlay(context);
+            }
         }
       },
       builder: (context, state) {

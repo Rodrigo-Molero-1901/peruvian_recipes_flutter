@@ -9,6 +9,7 @@ import 'package:peruvian_recipes_flutter/features/authentication/domain/usecases
 import 'package:peruvian_recipes_flutter/features/authentication/domain/usecases/logout.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/domain/usecases/register_user.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/viewmodels/auth_view_model.dart';
+import 'package:peruvian_recipes_flutter/shared/viewmodels/snack_bar_view_model.dart';
 
 part 'auth_state.dart';
 
@@ -53,11 +54,15 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> registerUser() async {
     final registerResult = await _registerUserUseCase.registerWithCredentials(
-      email: _emailTextEditingController.text,
-      password: _passwordTextEditingController.text,
+      // email: _emailTextEditingController.text,
+      // password: _passwordTextEditingController.text,
+      email: 'ra.molerocaceda@gmail.com',
+      password: 'Andrea1901!',
     );
     registerResult.fold(
-      (error) => {},
+      (error) => {
+        _emitMain(overlay: GenericError()),
+      },
       (result) {
         _userModel = result;
       },
@@ -83,22 +88,24 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  void forgotPasswordTapped() {
-    // TODO: ADD NAVIGATION
+  void goToForgotPassword() {
+    _emitMain(navigation: AuthForgotPasswordNavigation());
   }
 
-  void registerUserTapped() {
-    // TODO: ADD NAVIGATION
+  void goToRegisterUser() {
+    _emitMain(navigation: AuthRegisterUserNavigation());
   }
 
   void _emitMain({
     AuthViewModelNavigation? navigation,
+    SnackBarViewModel? overlay,
   }) {
     emit(
       AuthMain(
         viewModel: AuthViewModel.fromSuccessState(
           user: UserEntity.fromModel(_userModel),
           navigation: navigation,
+          overlay: overlay,
         ),
       ),
     );
