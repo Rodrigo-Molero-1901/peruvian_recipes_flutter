@@ -7,12 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:494687319567:android:1decc2e15fbc34f46a957a",
+        "mobilesdk_app_id": "1:494687319567:android:f6374d7bd48b35216a957a",
         "android_client_info": {
-          "package_name": "com.ramc.recipes"
+          "package_name": "com.ramc.recipes.peruvian_recipes_flutter"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "494687319567-isjs0md7fmtuskmmr079u6jrtidrmc71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB1uR7WDKkUb6eWxdpRwFUYy6Ebuwbw4aM"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494687319567-isjs0md7fmtuskmmr079u6jrtidrmc71.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "494687319567-hvmsec9h7jmt1i9lri42jal6r46ceb2j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ramc.recipes.peruvianRecipesFlutter"
+              }
+            }
+          ]
         }
       }
     }

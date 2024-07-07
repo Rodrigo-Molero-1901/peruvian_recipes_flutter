@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>494687319567-hvmsec9h7jmt1i9lri42jal6r46ceb2j.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.494687319567-hvmsec9h7jmt1i9lri42jal6r46ceb2j</string>
 	<key>API_KEY</key>
 	<string>AIzaSyD0dik2JUUlacMCN66uiZD45fFFlJ6s10A</string>
 	<key>GCM_SENDER_ID</key>
@@ -9,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ramc.recipes</string>
+	<string>com.ramc.recipes.peruvianRecipesFlutter</string>
 	<key>PROJECT_ID</key>
 	<string>peruvian-recipes-1cc50</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:494687319567:ios:96b09d11c6c239b76a957a</string>
+	<string>1:494687319567:ios:a99d8ee71d2daa046a957a</string>
 </dict>
 </plist>

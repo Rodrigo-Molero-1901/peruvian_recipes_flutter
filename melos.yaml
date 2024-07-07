@@ -10,7 +10,7 @@ scripts:
   get:
     run: flutter pub get
   generate:
-    run: dart pub run build_runner build -d
+    run: flutter pub run build_runner build -d
   intl:
     run: flutter pub run intl_utils:generate
   format:

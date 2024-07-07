@@ -5,4 +5,4 @@ import 'package:peruvian_recipes_flutter/di/injection.config.dart';
 final injector = GetIt.instance;
 
 @InjectableInit(preferRelativeImports: true)
-Future<void> configureModuleDependencies() async => injector.init();
+Future<void> configureDependencies() async => injector.init();
