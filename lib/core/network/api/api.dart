@@ -17,11 +17,11 @@ class Api {
     return AuthApi(_firebaseAuth, _firebaseFirestore);
   }
 
-  RecipeApi get recipesApi {
-    return RecipeApi(_firebaseFirestore);
-  }
-
   CategoryApi get categoriesApi {
     return CategoryApi(_firebaseFirestore);
+  }
+
+  RecipeApi get recipesApi {
+    return RecipeApi(_firebaseFirestore);
   }
 }

@@ -2,9 +2,9 @@ import 'package:peruvian_recipes_flutter/features/authentication/data/models/use
 import 'package:peruvian_recipes_flutter/shared/extensions/string_extension.dart';
 
 class UserEntity {
-  String displayName;
-  String email;
-  String photoURL;
+  final String displayName;
+  final String email;
+  final String photoURL;
 
   UserEntity({
     required this.displayName,
