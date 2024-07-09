@@ -9,7 +9,7 @@ import 'package:peruvian_recipes_flutter/features/authentication/domain/usecases
 import 'package:peruvian_recipes_flutter/features/authentication/domain/usecases/logout.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/domain/usecases/register_user.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/viewmodels/auth_view_model.dart';
-import 'package:peruvian_recipes_flutter/shared/viewmodels/snack_bar_view_model.dart';
+import 'package:peruvian_recipes_flutter/shared/viewmodels/overlay_view_model.dart';
 
 part 'auth_state.dart';
 
@@ -40,12 +40,14 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> loginWithCredentials() async {
+    _showLoadingDialog();
     final loginResult = await _credentialsLoginUseCase.loginWithCredentials(
       email: _emailTextEditingController.text,
       password: _passwordTextEditingController.text,
     );
+    _hideLoadingDialog();
     loginResult.fold(
-      (error) => {},
+      (error) {},
       (result) {
         _userModel = result;
       },
@@ -53,15 +55,17 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> registerUser() async {
+    _showLoadingDialog();
     final registerResult = await _registerUserUseCase.registerWithCredentials(
       // email: _emailTextEditingController.text,
       // password: _passwordTextEditingController.text,
       email: 'ra.molerocaceda@gmail.com',
       password: 'Andrea1901!',
     );
+    _hideLoadingDialog();
     registerResult.fold(
-      (error) => {
-        _emitMain(overlay: GenericError()),
+      (error) {
+        _emitMain(overlay: GenericError());
       },
       (result) {
         _userModel = result;
@@ -70,9 +74,11 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> googleLogin() async {
+    _showLoadingDialog();
     final googleLoginResult = await _googleLoginUseCase.googleLogin();
+    _hideLoadingDialog();
     googleLoginResult.fold(
-      (error) => {},
+      (error) {},
       (result) {
         _userModel = result;
         _emitMain(navigation: AuthLoggedInNavigation());
@@ -98,7 +104,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   void _emitMain({
     AuthViewModelNavigation? navigation,
-    SnackBarViewModel? overlay,
+    OverlayViewModel? overlay,
   }) {
     emit(
       AuthMain(
@@ -109,6 +115,14 @@ class AuthCubit extends Cubit<AuthState> {
         ),
       ),
     );
+  }
+
+  void _showLoadingDialog() {
+    _emitMain(overlay: ShowLoadingDialog());
+  }
+
+  void _hideLoadingDialog() {
+    _emitMain(overlay: HideLoadingDialog());
   }
 
   @override

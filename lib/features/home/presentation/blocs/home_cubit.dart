@@ -9,11 +9,12 @@ import 'package:peruvian_recipes_flutter/features/home/domain/usecases/get_carou
 import 'package:peruvian_recipes_flutter/features/home/domain/usecases/get_categories.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/utils/home_enums.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/viewmodels/home_view_model.dart';
+import 'package:peruvian_recipes_flutter/shared/mixins/connectivity_mixin.dart';
 
 part 'home_state.dart';
 
 @injectable
-class HomeCubit extends Cubit<HomeState> {
+class HomeCubit extends Cubit<HomeState> with ConnectivityMixin {
   final GetCarouselUseCase _getCarouselUseCase;
   final GetCategoriesUseCase _getCategoriesUseCase;
 
@@ -31,7 +32,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> initialize() async {
     _emitMain();
-    if (true) {
+    if (await hasConnectivity) {
       await _fetchData();
       _emitMain();
     } else {

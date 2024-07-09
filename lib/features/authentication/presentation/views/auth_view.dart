@@ -32,8 +32,8 @@ class _AuthViewState extends State<AuthView> {
             break;
           case AuthMain(:final viewModel):
             {
-              viewModel.navigate(context);
               viewModel.showOverlay(context);
+              viewModel.navigate(context);
             }
         }
       },

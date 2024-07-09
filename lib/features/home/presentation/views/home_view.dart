@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:peruvian_recipes_flutter/di/injection.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/domain/entitites/user.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/blocs/home_cubit.dart';
+import 'package:peruvian_recipes_flutter/features/home/presentation/views/home_loading_view.dart';
+import 'package:peruvian_recipes_flutter/features/home/presentation/views/home_main_view.dart';
 
 class HomeView extends StatefulWidget {
   final UserEntity user;
@@ -33,14 +35,11 @@ class _HomeViewState extends State<HomeView> {
       listener: (context, state) {},
       builder: (context, state) {
         return switch (state) {
-          HomeLoading() => const SizedBox.shrink(),
-          HomeMain(:final viewModel) => const Scaffold(
-              body: Center(
-                child: Text('loggeado'),
-              ),
+          HomeLoading() => const HomeLoadingView(),
+          HomeMain(:final viewModel) => HomeMainView(
+              viewModel: viewModel,
+              homeCubit: _homeCubit,
             ),
-          // TODO: Handle this case.
-          Object() => throw UnimplementedError(),
         };
       },
     );

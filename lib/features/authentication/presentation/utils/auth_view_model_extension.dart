@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:peruvian_recipes_flutter/core/router/router.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/viewmodels/auth_view_model.dart';
-import 'package:peruvian_recipes_flutter/shared/viewmodels/snack_bar_view_model.dart';
+import 'package:peruvian_recipes_flutter/shared/viewmodels/overlay_view_model.dart';
+import 'package:peruvian_recipes_flutter/shared/widgets/app_dialog.dart';
 import 'package:peruvian_recipes_flutter/shared/widgets/app_snack_bar.dart';
 
 extension AuthViewModelExtension on AuthViewModel {
@@ -13,7 +14,7 @@ extension AuthViewModelExtension on AuthViewModel {
         case AuthForgotPasswordNavigation():
           break;
         case AuthLoggedInNavigation():
-          context.push(Routes.pathHome, extra: user);
+          context.pushReplacement(Routes.pathHome, extra: user);
       }
     }
   }
@@ -23,6 +24,10 @@ extension AuthViewModelExtension on AuthViewModel {
       switch (overlay!) {
         case GenericError():
           AppSnackBar.showSnackBar(context: context);
+        case ShowLoadingDialog():
+          AppDialog.showLoadingDialog(context: context);
+        case HideLoadingDialog():
+          AppDialog.hideLoadingDialog(context: context);
       }
     }
   }
