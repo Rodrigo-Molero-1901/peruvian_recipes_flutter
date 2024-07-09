@@ -9,6 +9,7 @@ import 'package:peruvian_recipes_flutter/di/injection.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/domain/entitites/user.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/blocs/auth_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/views/auth_view.dart';
+import 'package:peruvian_recipes_flutter/features/home/presentation/blocs/home_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/views/home_view.dart';
 
 Future<void> main() async {
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthCubit>(create: (_) => injector<AuthCubit>()),
+        BlocProvider<HomeCubit>(create: (_) => injector<HomeCubit>()),
       ],
       child: MaterialApp.router(
         title: 'Flutter Demo',

@@ -1,9 +1,8 @@
-import 'dart:developer';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:peruvian_recipes_flutter/di/injection.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/domain/entitites/user.dart';
-import 'package:peruvian_recipes_flutter/shared/constants/app_fb_constants.dart';
+import 'package:peruvian_recipes_flutter/features/home/presentation/blocs/home_cubit.dart';
 
 class HomeView extends StatefulWidget {
   final UserEntity user;
@@ -18,27 +17,32 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  Future<void> getMostLikedRecipes() async {
-    final CollectionReference mostLikedRecipesCollection = FirebaseFirestore
-        .instance
-        .collection(AppFirebaseConstants.mostLikedCollection);
-    final QuerySnapshot querySnapshot = await mostLikedRecipesCollection.get();
-    final docs = querySnapshot.docs;
-    log(docs.toString());
-  }
+  late HomeCubit _homeCubit;
 
   @override
   void initState() {
-    // getMostLikedRecipes();
     super.initState();
+    _homeCubit = injector<HomeCubit>();
+    _homeCubit.initialize();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('HOLAA ESTOY LOGGEADO'),
-      ),
+    return BlocConsumer<HomeCubit, HomeState>(
+      bloc: _homeCubit,
+      listener: (context, state) {},
+      builder: (context, state) {
+        return switch (state) {
+          HomeLoading() => const SizedBox.shrink(),
+          HomeMain(:final viewModel) => const Scaffold(
+              body: Center(
+                child: Text('loggeado'),
+              ),
+            ),
+          // TODO: Handle this case.
+          Object() => throw UnimplementedError(),
+        };
+      },
     );
   }
 }
