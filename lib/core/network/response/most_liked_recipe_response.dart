@@ -14,7 +14,7 @@ class MostLikedRecipeResponse {
   factory MostLikedRecipeResponse.fromJson(Map<String, dynamic> json) {
     return MostLikedRecipeResponse(
       category: json['category'],
-      imageURL: json['imageURL'],
+      imageURL: json['image_url'],
       title: json['title'],
       votes: json['votes'],
     );

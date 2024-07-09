@@ -8,5 +8,7 @@ List<MostLikedRecipeModel> mostLikedRecipesListFromResponse(
       response.mostLikedRecipes.safeIsEmpty) {
     return [];
   }
-  return List.from(response.mostLikedRecipes.safe);
+  return response.mostLikedRecipes.safe
+      .map(MostLikedRecipeModel.fromResponse)
+      .toList();
 }

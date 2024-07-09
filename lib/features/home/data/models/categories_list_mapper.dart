@@ -7,5 +7,5 @@ List<CategoryModel> categoriesListModelFromResponse(
   if (response.categories.isNull || response.categories.safeIsEmpty) {
     return [];
   }
-  return List.from(response.categories.safe);
+  return response.categories.safe.map(CategoryModel.fromResponse).toList();
 }
