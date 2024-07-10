@@ -9,6 +9,7 @@ import 'package:peruvian_recipes_flutter/di/injection.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/domain/entitites/user.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/blocs/auth_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/views/auth_view.dart';
+import 'package:peruvian_recipes_flutter/features/home/domain/entitites/most_liked_recipe.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/blocs/home_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/views/home_view.dart';
 
@@ -56,6 +57,18 @@ class MyApp extends StatelessWidget {
                 final user = state.extra! as UserEntity;
                 return HomeView(
                   user: user,
+                );
+              },
+            ),
+            GoRoute(
+              path: Routes.pathRecipe,
+              name: Routes.nameRecipe,
+              builder: (context, state) {
+                final recipe = state.extra! as MostLikedRecipeEntity;
+                return const Scaffold(
+                  body: Center(
+                    child: Text('Estamos en el detalle de la receta'),
+                  ),
                 );
               },
             ),

@@ -73,7 +73,9 @@ class HomeCubit extends Cubit<HomeState> with ConnectivityMixin {
     ]);
   }
 
-  void _emitMain() {
+  void _emitMain({
+    HomeViewModelNavigation? navigation,
+  }) {
     emit(
       HomeMain(
         viewModel: HomeViewModel.fromSuccessState(
@@ -82,7 +84,16 @@ class HomeCubit extends Cubit<HomeState> with ConnectivityMixin {
           carouselRecipes:
               _mostLikedRecipes.map(MostLikedRecipeEntity.fromModel).toList(),
           categories: _categories.map(CategoryEntity.fromModel).toList(),
+          navigation: navigation,
         ),
+      ),
+    );
+  }
+
+  void onMostLikedRecipeTapped({required int pos}) {
+    _emitMain(
+      navigation: HomeDetailedRecipeNavigation(
+        recipe: MostLikedRecipeEntity.fromModel(_mostLikedRecipes[pos]),
       ),
     );
   }

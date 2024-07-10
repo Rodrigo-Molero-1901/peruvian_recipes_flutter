@@ -4,7 +4,7 @@ class MostLikedRecipeViewModel {
   String category;
   String imageURL;
   String title;
-  int votes;
+  String votes;
 
   MostLikedRecipeViewModel({
     required this.category,
@@ -17,5 +17,5 @@ class MostLikedRecipeViewModel {
       : category = entity.category,
         imageURL = entity.imageURL,
         title = entity.title,
-        votes = entity.votes;
+        votes = entity.votes.toString();
 }

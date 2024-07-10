@@ -4,9 +4,9 @@ import 'package:peruvian_recipes_flutter/shared/viewmodels/overlay_view_model.da
 part 'auth_view_model_navigation.dart';
 
 class AuthViewModel {
+  final UserEntity user;
   final AuthViewModelNavigation? navigation;
   final OverlayViewModel? overlay;
-  final UserEntity user;
 
   AuthViewModel.fromSuccessState({
     required this.user,

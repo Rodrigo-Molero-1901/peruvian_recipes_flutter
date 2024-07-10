@@ -94,14 +94,6 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  void goToForgotPassword() {
-    _emitMain(navigation: AuthForgotPasswordNavigation());
-  }
-
-  void goToRegisterUser() {
-    _emitMain(navigation: AuthRegisterUserNavigation());
-  }
-
   void _emitMain({
     AuthViewModelNavigation? navigation,
     OverlayViewModel? overlay,
@@ -123,6 +115,14 @@ class AuthCubit extends Cubit<AuthState> {
 
   void _hideLoadingDialog() {
     _emitMain(overlay: HideLoadingDialog());
+  }
+
+  void goToForgotPassword() {
+    _emitMain(navigation: AuthForgotPasswordNavigation());
+  }
+
+  void goToRegisterUser() {
+    _emitMain(navigation: AuthRegisterUserNavigation());
   }
 
   @override

@@ -14,9 +14,40 @@ class HomeMainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('loggeado'),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 250,
+              child: ListView.builder(
+                itemCount: viewModel.mostLikedRecipeViewModels.length,
+                itemBuilder: (context, i) {
+                  final recipe = viewModel.mostLikedRecipeViewModels[i];
+                  return ListTile(
+                    onTap: () => homeCubit.onMostLikedRecipeTapped(pos: i),
+                    title: Text(recipe.title),
+                    subtitle: Text(recipe.category),
+                    trailing: Text(recipe.votes),
+                  );
+                },
+              ),
+            ),
+            SizedBox(
+              height: 150,
+              child: ListView.builder(
+                itemCount: viewModel.categoryViewModels.length,
+                itemBuilder: (context, i) {
+                  final category = viewModel.categoryViewModels[i];
+                  return Chip(
+                    avatar: const Icon(Icons.fastfood),
+                    label: Text(category.title),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
