@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-extension JsonFormatter on QueryDocumentSnapshot {
+extension JsonFormatter on DocumentSnapshot {
+  Map<String, dynamic> get toJson => data() as Map<String, dynamic>;
+}
+
+extension QueryDocumentJsonFormatter on QueryDocumentSnapshot {
   Map<String, dynamic> get toJson => data() as Map<String, dynamic>;
 }
 

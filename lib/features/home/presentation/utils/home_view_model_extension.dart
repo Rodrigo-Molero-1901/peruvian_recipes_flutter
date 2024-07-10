@@ -7,8 +7,8 @@ extension HomeViewModelExtension on HomeViewModel {
   void navigate(BuildContext context) {
     if (navigation != null) {
       switch (navigation!) {
-        case HomeDetailedRecipeNavigation(:final recipe):
-          context.push(Routes.pathRecipe, extra: recipe);
+        case HomeDetailedRecipeNavigation(:final recipeId):
+          context.push(Routes.pathRecipeDetails, extra: recipeId);
       }
     }
   }

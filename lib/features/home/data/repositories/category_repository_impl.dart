@@ -2,7 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:peruvian_recipes_flutter/core/network/api_manager/api_manager.dart';
 import 'package:peruvian_recipes_flutter/core/network/error/api_error.dart';
-import 'package:peruvian_recipes_flutter/features/home/data/models/categories_list_mapper.dart';
+import 'package:peruvian_recipes_flutter/features/home/data/models/category_model_mapper.dart';
 import 'package:peruvian_recipes_flutter/features/home/data/models/category_model.dart';
 import 'package:peruvian_recipes_flutter/features/home/domain/repositories/category_repository.dart';
 

@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/base_response.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/login_response.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/registration_response.dart';
-import 'package:peruvian_recipes_flutter/shared/constants/app_fb_constants.dart';
+import 'package:peruvian_recipes_flutter/shared/constants/app_firebase_constants.dart';
 
 class AuthApi {
   final FirebaseAuth _firebaseAuth;

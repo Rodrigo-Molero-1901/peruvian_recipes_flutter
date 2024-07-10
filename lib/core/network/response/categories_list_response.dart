@@ -1,4 +1,5 @@
 import 'package:peruvian_recipes_flutter/core/network/response/category_response.dart';
+import 'package:peruvian_recipes_flutter/shared/extensions/iterable_extension.dart';
 
 class CategoriesListResponse {
   List<CategoryResponse>? categories;
@@ -11,7 +12,7 @@ class CategoriesListResponse {
       List<Map<String, dynamic>>? docs) {
     return CategoriesListResponse(
       categories: List.from(
-        (docs ?? []).map(CategoryResponse.fromJson),
+        docs.safe.map(CategoryResponse.fromJson),
       ),
     );
   }

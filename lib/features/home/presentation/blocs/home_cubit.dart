@@ -9,6 +9,7 @@ import 'package:peruvian_recipes_flutter/features/home/domain/usecases/get_carou
 import 'package:peruvian_recipes_flutter/features/home/domain/usecases/get_categories.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/utils/home_enums.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/viewmodels/home_view_model.dart';
+import 'package:peruvian_recipes_flutter/shared/extensions/string_extension.dart';
 import 'package:peruvian_recipes_flutter/shared/mixins/connectivity_mixin.dart';
 
 part 'home_state.dart';
@@ -93,7 +94,7 @@ class HomeCubit extends Cubit<HomeState> with ConnectivityMixin {
   void onMostLikedRecipeTapped({required int pos}) {
     _emitMain(
       navigation: HomeDetailedRecipeNavigation(
-        recipe: MostLikedRecipeEntity.fromModel(_mostLikedRecipes[pos]),
+        recipeId: _mostLikedRecipes[pos].id.safe,
       ),
     );
   }

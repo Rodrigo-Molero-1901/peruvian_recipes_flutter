@@ -7,9 +7,13 @@ abstract class Routes {
   static const String pathHome = "/home";
   static const String nameHome = "home";
 
-  // Recipe
-  static const String pathRecipe = "/recipe";
-  static const String nameRecipe = "recipe";
+  // Recipe details
+  static const String pathRecipeDetails = "/recipe-details";
+  static const String nameRecipeDetails = "recipe details";
+
+  // Recipes list
+  static const String pathRecipesList = "/recipes-list";
+  static const String nameRecipesList = "recipes list";
 
   // Profile
   static const String pathProfile = "/profile";

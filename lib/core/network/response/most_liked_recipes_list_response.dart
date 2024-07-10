@@ -1,4 +1,5 @@
 import 'package:peruvian_recipes_flutter/core/network/response/most_liked_recipe_response.dart';
+import 'package:peruvian_recipes_flutter/shared/extensions/iterable_extension.dart';
 
 class MostLikedRecipesListResponse {
   List<MostLikedRecipeResponse>? mostLikedRecipes;
@@ -11,7 +12,7 @@ class MostLikedRecipesListResponse {
       List<Map<String, dynamic>>? docs) {
     return MostLikedRecipesListResponse(
       mostLikedRecipes: List.from(
-        (docs ?? []).map(MostLikedRecipeResponse.fromJson),
+        docs.safe.map(MostLikedRecipeResponse.fromJson),
       ),
     );
   }

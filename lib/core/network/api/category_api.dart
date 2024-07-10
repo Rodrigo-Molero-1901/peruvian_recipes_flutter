@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/base_response.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/categories_list_response.dart';
-import 'package:peruvian_recipes_flutter/shared/constants/app_fb_constants.dart';
-import 'package:peruvian_recipes_flutter/shared/extensions/query_snapshot_extension.dart';
+import 'package:peruvian_recipes_flutter/shared/constants/app_firebase_constants.dart';
+import 'package:peruvian_recipes_flutter/shared/extensions/snapshot_extension.dart';
 
 class CategoryApi {
   final FirebaseFirestore _firebaseFirestore;

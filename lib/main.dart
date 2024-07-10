@@ -9,9 +9,11 @@ import 'package:peruvian_recipes_flutter/di/injection.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/domain/entitites/user.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/blocs/auth_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/views/auth_view.dart';
-import 'package:peruvian_recipes_flutter/features/home/domain/entitites/most_liked_recipe.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/blocs/home_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/views/home_view.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipe_details_cubit.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipes_list_cubit.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/presentation/views/recipe_details_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +35,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<AuthCubit>(create: (_) => injector<AuthCubit>()),
         BlocProvider<HomeCubit>(create: (_) => injector<HomeCubit>()),
+        BlocProvider<RecipeDetailsCubit>(
+            create: (_) => injector<RecipeDetailsCubit>()),
+        BlocProvider<RecipesListCubit>(
+            create: (_) => injector<RecipesListCubit>()),
       ],
       child: MaterialApp.router(
         title: 'Flutter Demo',
@@ -61,14 +67,12 @@ class MyApp extends StatelessWidget {
               },
             ),
             GoRoute(
-              path: Routes.pathRecipe,
-              name: Routes.nameRecipe,
+              path: Routes.pathRecipeDetails,
+              name: Routes.nameRecipeDetails,
               builder: (context, state) {
-                final recipe = state.extra! as MostLikedRecipeEntity;
-                return const Scaffold(
-                  body: Center(
-                    child: Text('Estamos en el detalle de la receta'),
-                  ),
+                final recipeId = state.extra! as String;
+                return RecipeDetailsView(
+                  recipeId: recipeId,
                 );
               },
             ),
