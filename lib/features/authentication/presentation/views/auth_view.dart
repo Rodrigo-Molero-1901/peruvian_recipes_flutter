@@ -42,7 +42,7 @@ class _AuthViewState extends State<AuthView> {
           AuthLoading() => const SizedBox.shrink(),
           AuthMain(:final viewModel) => AuthMainView(
               viewModel: viewModel,
-              authCubit: _authCubit,
+              cubit: _authCubit,
             ),
         };
       },

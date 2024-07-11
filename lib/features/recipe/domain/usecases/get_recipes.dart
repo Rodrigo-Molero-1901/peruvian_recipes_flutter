@@ -13,4 +13,8 @@ class GetRecipesUseCase {
   Future<Either<ApiError, List<RecipeModel>>> getRecipes() async {
     return await _repository.getRecipes();
   }
+
+  Future<Either<ApiError, List<RecipeModel>>> getFavoriteRecipes() async {
+    return await _repository.getFavoriteRecipes();
+  }
 }

@@ -92,7 +92,7 @@ class AuthApi {
       await _firebaseAuth.signOut();
       return true;
     } catch (_) {
-      rethrow;
+      return false;
     }
   }
 }

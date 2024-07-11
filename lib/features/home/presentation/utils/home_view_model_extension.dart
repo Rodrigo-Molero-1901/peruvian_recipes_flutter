@@ -9,6 +9,8 @@ extension HomeViewModelExtension on HomeViewModel {
       switch (navigation!) {
         case HomeDetailedRecipeNavigation(:final recipeId):
           context.push(Routes.pathRecipeDetails, extra: recipeId);
+        case HomeRecipesListNavigation():
+          context.push(Routes.pathRecipesList);
       }
     }
   }

@@ -4,12 +4,12 @@ import 'package:peruvian_recipes_flutter/features/recipe/presentation/viewmodels
 
 class RecipeDetailsMainView extends StatelessWidget {
   final RecipeDetailsViewModel viewModel;
-  final RecipeDetailsCubit recipeDetailsCubit;
+  final RecipeDetailsCubit cubit;
 
   const RecipeDetailsMainView({
     super.key,
     required this.viewModel,
-    required this.recipeDetailsCubit,
+    required this.cubit,
   });
 
   @override
@@ -24,6 +24,12 @@ class RecipeDetailsMainView extends StatelessWidget {
             Text(viewModel.detailedRecipeViewModel.category),
             const SizedBox(height: 10),
             Text(viewModel.detailedRecipeViewModel.description),
+            const SizedBox(height: 30),
+            IconButton(
+              onPressed: () => cubit.saveFavoriteRecipe(
+                  recipeId: viewModel.detailedRecipeViewModel.id),
+              icon: const Icon(Icons.plus_one),
+            ),
           ],
         ),
       ),

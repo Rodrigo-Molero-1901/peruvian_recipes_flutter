@@ -4,12 +4,12 @@ import 'package:peruvian_recipes_flutter/features/authentication/presentation/vi
 
 class AuthMainView extends StatelessWidget {
   final AuthViewModel viewModel;
-  final AuthCubit authCubit;
+  final AuthCubit cubit;
 
   const AuthMainView({
     super.key,
     required this.viewModel,
-    required this.authCubit,
+    required this.cubit,
   });
 
   @override
@@ -19,7 +19,7 @@ class AuthMainView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: authCubit.googleLogin,
+            onTap: cubit.googleLogin,
             child: Center(
               child: Container(
                 height: 100,
@@ -32,7 +32,7 @@ class AuthMainView extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: authCubit.registerUser,
+            onTap: cubit.registerUser,
             child: Center(
               child: Container(
                 height: 100,
@@ -45,7 +45,7 @@ class AuthMainView extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: authCubit.logout,
+            onTap: cubit.logout,
             child: Center(
               child: Container(
                 height: 100,

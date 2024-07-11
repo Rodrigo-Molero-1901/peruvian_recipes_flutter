@@ -63,12 +63,12 @@ class AuthApiManager {
     }
   }
 
-  Future<Either<ApiError, bool>> logout() async {
+  Future<Either<bool, bool>> logout() async {
     try {
       final userLogout = await _api.authApi.logout();
       return Right(userLogout);
     } catch (_) {
-      return Left(ApiError.defaultError());
+      return const Left(false);
     }
   }
 }

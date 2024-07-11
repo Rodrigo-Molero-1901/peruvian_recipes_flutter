@@ -36,8 +36,10 @@ import '../features/recipe/data/repositories/recipe_repository_impl.dart'
 import '../features/recipe/domain/repositories/recipe_repository.dart' as _i4;
 import '../features/recipe/domain/usecases/get_recipe_details.dart' as _i20;
 import '../features/recipe/domain/usecases/get_recipes.dart' as _i21;
+import '../features/recipe/domain/usecases/save_favorite_recipe.dart' as _i22;
 import '../features/recipe/presentation/blocs/recipe_details_cubit.dart'
-    as _i22;
+    as _i24;
+import '../features/recipe/presentation/blocs/recipes_list_cubit.dart' as _i23;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -85,8 +87,14 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i20.GetRecipeDetailsUseCase(gh<_i4.RecipeRepository>()));
     gh.factory<_i21.GetRecipesUseCase>(
         () => _i21.GetRecipesUseCase(gh<_i4.RecipeRepository>()));
-    gh.factory<_i22.RecipeDetailsCubit>(() => _i22.RecipeDetailsCubit(
-        getRecipeDetailsUseCase: gh<_i20.GetRecipeDetailsUseCase>()));
+    gh.factory<_i22.SaveFavoriteRecipeUseCase>(
+        () => _i22.SaveFavoriteRecipeUseCase(gh<_i4.RecipeRepository>()));
+    gh.factory<_i23.RecipesListCubit>(() =>
+        _i23.RecipesListCubit(getRecipesUseCase: gh<_i21.GetRecipesUseCase>()));
+    gh.factory<_i24.RecipeDetailsCubit>(() => _i24.RecipeDetailsCubit(
+          getRecipeDetailsUseCase: gh<_i20.GetRecipeDetailsUseCase>(),
+          saveFavoriteRecipeUseCase: gh<_i22.SaveFavoriteRecipeUseCase>(),
+        ));
     return this;
   }
 }

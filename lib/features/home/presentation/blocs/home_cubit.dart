@@ -98,4 +98,8 @@ class HomeCubit extends Cubit<HomeState> with ConnectivityMixin {
       ),
     );
   }
+
+  void goToFavoriteList() {
+    _emitMain(navigation: HomeRecipesListNavigation());
+  }
 }

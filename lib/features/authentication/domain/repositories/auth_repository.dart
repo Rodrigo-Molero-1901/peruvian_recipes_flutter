@@ -11,5 +11,5 @@ abstract class AuthRepository {
 
   Future<Either<ApiError, UserModel>> googleLogin();
 
-  Future<Either<ApiError, bool>> logout();
+  Future<Either<bool, bool>> logout();
 }

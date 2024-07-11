@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/data/models/detailed_recipe_model.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/domain/entitites/detailed_recipe.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/domain/usecases/get_recipe_details.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/domain/usecases/save_favorite_recipe.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/presentation/viewmodels/recipe_details_view_model.dart';
 import 'package:peruvian_recipes_flutter/shared/mixins/connectivity_mixin.dart';
 
@@ -13,10 +14,13 @@ part 'recipe_details_state.dart';
 class RecipeDetailsCubit extends Cubit<RecipeDetailsState>
     with ConnectivityMixin {
   final GetRecipeDetailsUseCase _getRecipeDetailsUseCase;
+  final SaveFavoriteRecipeUseCase _saveFavoriteRecipeUseCase;
 
   RecipeDetailsCubit({
     required GetRecipeDetailsUseCase getRecipeDetailsUseCase,
+    required SaveFavoriteRecipeUseCase saveFavoriteRecipeUseCase,
   })  : _getRecipeDetailsUseCase = getRecipeDetailsUseCase,
+        _saveFavoriteRecipeUseCase = saveFavoriteRecipeUseCase,
         super(RecipeDetailsLoading());
 
   var _detailedRecipe = DetailedRecipeModel();
@@ -48,6 +52,15 @@ class RecipeDetailsCubit extends Cubit<RecipeDetailsState>
           detailedRecipe: DetailedRecipeEntity.fromModel(_detailedRecipe),
         ),
       ),
+    );
+  }
+
+  Future<void> saveFavoriteRecipe({required String recipeId}) async {
+    final result =
+        await _saveFavoriteRecipeUseCase.saveFavoriteRecipe(recipeId: recipeId);
+    result.fold(
+      (error) {},
+      (recipeHasBeenSaved) {},
     );
   }
 }

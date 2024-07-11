@@ -8,4 +8,5 @@ abstract class AppFirebaseConstants {
   static const recipeDetailsDocument = 'details';
 
   static const usersCollection = 'users';
+  static const userFavoriteRecipes = 'favorite-recipes';
 }

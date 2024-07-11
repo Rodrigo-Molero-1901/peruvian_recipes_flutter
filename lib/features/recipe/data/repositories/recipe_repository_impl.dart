@@ -35,4 +35,28 @@ class RecipeRepositoryImpl implements RecipeRepository {
       (response) => Right(detailedRecipeFromResponse(response)),
     );
   }
+
+  @override
+  Future<Either<bool, bool>> saveFavoriteRecipe(
+      {required String recipeId}) async {
+    return await _apiManager.recipesApiManager
+        .saveFavoriteRecipe(recipeId: recipeId);
+  }
+
+  @override
+  Future<Either<ApiError, List<RecipeModel>>> getFavoriteRecipes() async {
+    final favoriteRecipesResponse =
+        await _apiManager.recipesApiManager.getFavoriteRecipes();
+    return favoriteRecipesResponse.fold(
+      (error) => Left(error),
+      (response) => Right(recipesListFromResponse(response)),
+    );
+  }
+
+  @override
+  Future<Either<bool, bool>> removeFavoriteRecipe(
+      {required String recipeId}) async {
+    return await _apiManager.recipesApiManager
+        .removeFavoriteRecipe(recipeId: recipeId);
+  }
 }

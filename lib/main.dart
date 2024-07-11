@@ -14,6 +14,7 @@ import 'package:peruvian_recipes_flutter/features/home/presentation/views/home_v
 import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipe_details_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipes_list_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/presentation/views/recipe_details_view.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/presentation/views/recipes_list_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -74,6 +75,13 @@ class MyApp extends StatelessWidget {
                 return RecipeDetailsView(
                   recipeId: recipeId,
                 );
+              },
+            ),
+            GoRoute(
+              path: Routes.pathRecipesList,
+              name: Routes.nameRecipesList,
+              builder: (context, state) {
+                return const RecipesListView();
               },
             ),
           ],

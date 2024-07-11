@@ -8,4 +8,10 @@ abstract class RecipeRepository {
 
   Future<Either<ApiError, DetailedRecipeModel>> getRecipeDetails(
       {required String recipeId});
+
+  Future<Either<bool, bool>> saveFavoriteRecipe({required String recipeId});
+
+  Future<Either<ApiError, List<RecipeModel>>> getFavoriteRecipes();
+
+  Future<Either<bool, bool>> removeFavoriteRecipe({required String recipeId});
 }

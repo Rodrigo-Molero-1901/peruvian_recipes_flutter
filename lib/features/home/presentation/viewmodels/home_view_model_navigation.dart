@@ -9,3 +9,5 @@ class HomeDetailedRecipeNavigation extends HomeViewModelNavigation {
     required this.recipeId,
   });
 }
+
+class HomeRecipesListNavigation extends HomeViewModelNavigation {}

@@ -51,7 +51,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<ApiError, bool>> logout() async {
+  Future<Either<bool, bool>> logout() async {
     return await _apiManager.authApiManager.logout();
   }
 }

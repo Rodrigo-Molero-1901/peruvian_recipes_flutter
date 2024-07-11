@@ -42,4 +42,36 @@ class RecipeApiManager {
       return Left(ApiError.defaultError());
     }
   }
+
+  Future<Either<bool, bool>> saveFavoriteRecipe(
+      {required String recipeId}) async {
+    try {
+      final recipeHasBeenSaved =
+          await _api.recipesApi.saveFavoriteRecipe(recipeId: recipeId);
+      return Right(recipeHasBeenSaved);
+    } catch (_) {
+      return const Left(false);
+    }
+  }
+
+  Future<Either<ApiError, RecipesListResponse>> getFavoriteRecipes() async {
+    try {
+      final response = await _api.recipesApi.getFavoriteRecipes();
+      if (response.data != null) return Right(response.data!);
+      return Left(ApiError.defaultError());
+    } catch (_) {
+      return Left(ApiError.defaultError());
+    }
+  }
+
+  Future<Either<bool, bool>> removeFavoriteRecipe(
+      {required String recipeId}) async {
+    try {
+      final recipeHasBeenSaved =
+          await _api.recipesApi.removeFavoriteRecipe(recipeId: recipeId);
+      return Right(recipeHasBeenSaved);
+    } catch (_) {
+      return const Left(false);
+    }
+  }
 }

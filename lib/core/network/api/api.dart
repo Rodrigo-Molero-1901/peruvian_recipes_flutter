@@ -22,6 +22,6 @@ class Api {
   }
 
   RecipeApi get recipesApi {
-    return RecipeApi(_firebaseFirestore);
+    return RecipeApi(_firebaseAuth, _firebaseFirestore);
   }
 }

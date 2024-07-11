@@ -4,12 +4,12 @@ import 'package:peruvian_recipes_flutter/features/home/presentation/viewmodels/h
 
 class HomeMainView extends StatelessWidget {
   final HomeViewModel viewModel;
-  final HomeCubit homeCubit;
+  final HomeCubit cubit;
 
   const HomeMainView({
     super.key,
     required this.viewModel,
-    required this.homeCubit,
+    required this.cubit,
   });
 
   @override
@@ -25,7 +25,7 @@ class HomeMainView extends StatelessWidget {
                 itemBuilder: (context, i) {
                   final recipe = viewModel.mostLikedRecipeViewModels[i];
                   return ListTile(
-                    onTap: () => homeCubit.onMostLikedRecipeTapped(pos: i),
+                    onTap: () => cubit.onMostLikedRecipeTapped(pos: i),
                     title: Text(recipe.title),
                     subtitle: Text(recipe.category),
                     trailing: Text(recipe.votes),
@@ -44,6 +44,13 @@ class HomeMainView extends StatelessWidget {
                     label: Text(category.title),
                   );
                 },
+              ),
+            ),
+            GestureDetector(
+              onTap: cubit.goToFavoriteList,
+              child: Container(
+                color: Colors.cyanAccent,
+                child: Text('ir a favoritos'),
               ),
             ),
           ],

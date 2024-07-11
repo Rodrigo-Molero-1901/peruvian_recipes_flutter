@@ -44,7 +44,7 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
           RecipeDetailsLoading() => const SizedBox.shrink(),
           RecipeDetailsMain(:final viewModel) => RecipeDetailsMainView(
               viewModel: viewModel,
-              recipeDetailsCubit: _recipeDetailsCubit,
+              cubit: _recipeDetailsCubit,
             ),
         };
       },

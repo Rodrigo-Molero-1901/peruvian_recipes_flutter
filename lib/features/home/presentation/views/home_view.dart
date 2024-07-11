@@ -45,7 +45,7 @@ class _HomeViewState extends State<HomeView> {
           HomeLoading() => const SizedBox.shrink(),
           HomeMain(:final viewModel) => HomeMainView(
               viewModel: viewModel,
-              homeCubit: _homeCubit,
+              cubit: _homeCubit,
             ),
         };
       },
