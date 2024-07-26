@@ -14,47 +14,45 @@ class HomeMainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 250,
-              child: ListView.builder(
-                itemCount: viewModel.mostLikedRecipeViewModels.length,
-                itemBuilder: (context, i) {
-                  final recipe = viewModel.mostLikedRecipeViewModels[i];
-                  return ListTile(
-                    onTap: () => cubit.onMostLikedRecipeTapped(pos: i),
-                    title: Text(recipe.title),
-                    subtitle: Text(recipe.category),
-                    trailing: Text(recipe.votes),
-                  );
-                },
-              ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 250,
+            child: ListView.builder(
+              itemCount: viewModel.carouselRecipesViewModels.length,
+              itemBuilder: (context, i) {
+                final recipe = viewModel.carouselRecipesViewModels[i];
+                return ListTile(
+                  onTap: () => cubit.onMostLikedRecipeTapped(pos: i),
+                  title: Text(recipe.title),
+                  subtitle: Text(recipe.category),
+                  trailing: Text(recipe.votes),
+                );
+              },
             ),
-            SizedBox(
-              height: 150,
-              child: ListView.builder(
-                itemCount: viewModel.categoryViewModels.length,
-                itemBuilder: (context, i) {
-                  final category = viewModel.categoryViewModels[i];
-                  return Chip(
-                    avatar: const Icon(Icons.fastfood),
-                    label: Text(category.title),
-                  );
-                },
-              ),
+          ),
+          SizedBox(
+            height: 150,
+            child: ListView.builder(
+              itemCount: viewModel.categoryViewModels.length,
+              itemBuilder: (context, i) {
+                final category = viewModel.categoryViewModels[i];
+                return Chip(
+                  avatar: const Icon(Icons.fastfood),
+                  label: Text(category.title),
+                );
+              },
             ),
-            GestureDetector(
-              onTap: cubit.goToFavoriteList,
-              child: Container(
-                color: Colors.cyanAccent,
-                child: Text('ir a favoritos'),
-              ),
+          ),
+          GestureDetector(
+            onTap: cubit.goToFavoriteList,
+            child: Container(
+              color: Colors.cyanAccent,
+              child: Text('ir a favoritos'),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -2,9 +2,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/data/models/recipe_model.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/domain/entitites/recipe.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/domain/entitites/recipe_card.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/domain/usecases/get_recipes.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/presentation/viewmodels/recipes_list_view_model.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/presentation/viewmodels/recipes_list/recipes_list_view_model.dart';
 import 'package:peruvian_recipes_flutter/shared/mixins/connectivity_mixin.dart';
 
 part 'recipes_list_state.dart';
@@ -59,7 +59,7 @@ class RecipesListCubit extends Cubit<RecipesListState> with ConnectivityMixin {
     emit(
       RecipesListMain(
         viewModel: RecipesListViewModel.fromSuccessState(
-          recipes: _favoriteRecipes.map(RecipeEntity.fromModel).toList(),
+          recipes: _favoriteRecipes.map(RecipeCardEntity.fromModel).toList(),
         ),
       ),
     );

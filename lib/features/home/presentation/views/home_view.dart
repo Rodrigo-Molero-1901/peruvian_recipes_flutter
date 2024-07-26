@@ -41,13 +41,15 @@ class _HomeViewState extends State<HomeView> {
         }
       },
       builder: (context, state) {
-        return switch (state) {
-          HomeLoading() => const SizedBox.shrink(),
-          HomeMain(:final viewModel) => HomeMainView(
-              viewModel: viewModel,
-              cubit: _homeCubit,
-            ),
-        };
+        return Scaffold(
+          body: switch (state) {
+            HomeLoading() => const SizedBox.shrink(),
+            HomeMain(:final viewModel) => HomeMainView(
+                viewModel: viewModel,
+                cubit: _homeCubit,
+              ),
+          },
+        );
       },
     );
   }

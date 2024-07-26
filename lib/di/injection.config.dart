@@ -37,9 +37,10 @@ import '../features/recipe/domain/repositories/recipe_repository.dart' as _i4;
 import '../features/recipe/domain/usecases/get_recipe_details.dart' as _i20;
 import '../features/recipe/domain/usecases/get_recipes.dart' as _i21;
 import '../features/recipe/domain/usecases/save_favorite_recipe.dart' as _i22;
-import '../features/recipe/presentation/blocs/recipe_details_cubit.dart'
+import '../features/recipe/presentation/blocs/recipe_details/recipe_details_cubit.dart'
     as _i24;
-import '../features/recipe/presentation/blocs/recipes_list_cubit.dart' as _i23;
+import '../features/recipe/presentation/blocs/recipes_list/recipes_list_cubit.dart'
+    as _i23;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt

@@ -1,19 +1,19 @@
-import 'package:peruvian_recipes_flutter/features/home/domain/entitites/most_liked_recipe.dart';
+import 'package:peruvian_recipes_flutter/features/home/domain/entitites/carousel_recipe.dart';
 
-class MostLikedRecipeViewModel {
+class CarouselRecipeViewModel {
   String category;
   String imageURL;
   String title;
   String votes;
 
-  MostLikedRecipeViewModel({
+  CarouselRecipeViewModel({
     required this.category,
     required this.imageURL,
     required this.title,
     required this.votes,
   });
 
-  MostLikedRecipeViewModel.fromEntity(MostLikedRecipeEntity entity)
+  CarouselRecipeViewModel.fromEntity(CarouselRecipeEntity entity)
       : category = entity.category,
         imageURL = entity.imageURL,
         title = entity.title,

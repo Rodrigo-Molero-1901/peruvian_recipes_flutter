@@ -11,8 +11,8 @@ import 'package:peruvian_recipes_flutter/features/authentication/presentation/bl
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/views/auth_view.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/blocs/home_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/views/home_view.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipe_details_cubit.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipes_list_cubit.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipe_details/recipe_details_cubit.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipes_list/recipes_list_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/presentation/views/recipe_details_view.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/presentation/views/recipes_list_view.dart';
 

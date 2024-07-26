@@ -42,14 +42,17 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> loginWithCredentials() async {
     _showLoadingDialog();
     final loginResult = await _credentialsLoginUseCase.loginWithCredentials(
-      email: _emailTextEditingController.text,
-      password: _passwordTextEditingController.text,
+      // email: _emailTextEditingController.text,
+      // password: _passwordTextEditingController.text,
+      email: 'ra.molerocaceda@gmail.com',
+      password: 'Andrea1901!',
     );
     _hideLoadingDialog();
     loginResult.fold(
       (error) {},
       (result) {
         _userModel = result;
+        _emitMain(navigation: AuthLoggedInNavigation());
       },
     );
   }
@@ -127,7 +130,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   @override
   Future<void> close() async {
-    // TODO: ADD CLOSE
+    _emailTextEditingController.dispose();
+    _passwordTextEditingController.dispose();
     await super.close();
   }
 }

@@ -2,8 +2,8 @@ import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:peruvian_recipes_flutter/core/network/api_manager/api_manager.dart';
 import 'package:peruvian_recipes_flutter/core/network/error/api_error.dart';
-import 'package:peruvian_recipes_flutter/features/home/data/models/most_liked_recipe_mapper.dart';
-import 'package:peruvian_recipes_flutter/features/home/data/models/most_liked_recipe_model.dart';
+import 'package:peruvian_recipes_flutter/features/home/data/models/carousel_recipe_mapper.dart';
+import 'package:peruvian_recipes_flutter/features/home/data/models/carousel_recipe_model.dart';
 import 'package:peruvian_recipes_flutter/features/home/domain/repositories/carousel_repository.dart';
 
 @Injectable(as: CarouselRepository)
@@ -15,13 +15,13 @@ class CarouselRepositoryImpl implements CarouselRepository {
   }) : _apiManager = apiManager;
 
   @override
-  Future<Either<ApiError, List<MostLikedRecipeModel>>>
-      getMostLikedRecipes() async {
+  Future<Either<ApiError, List<CarouselRecipeModel>>>
+      getCarouselRecipes() async {
     final mostLikedRecipesResponse =
-        await _apiManager.recipesApiManager.getMostLikedRecipes();
+        await _apiManager.recipesApiManager.getCarouselRecipes();
     return mostLikedRecipesResponse.fold(
       (error) => Left(error),
-      (response) => Right(mostLikedRecipesListFromResponse(response)),
+      (response) => Right(carouselRecipesListFromResponse(response)),
     );
   }
 }

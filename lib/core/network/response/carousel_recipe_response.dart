@@ -1,11 +1,11 @@
-class MostLikedRecipeResponse {
+class CarouselRecipeResponse {
   String? id;
   String? category;
   String? imageURL;
   String? title;
   int? votes;
 
-  MostLikedRecipeResponse({
+  CarouselRecipeResponse({
     this.id,
     this.category,
     this.imageURL,
@@ -13,8 +13,8 @@ class MostLikedRecipeResponse {
     this.votes,
   });
 
-  factory MostLikedRecipeResponse.fromJson(Map<String, dynamic> json) {
-    return MostLikedRecipeResponse(
+  factory CarouselRecipeResponse.fromJson(Map<String, dynamic> json) {
+    return CarouselRecipeResponse(
       id: json['id'],
       category: json['category'],
       imageURL: json['image_url'],

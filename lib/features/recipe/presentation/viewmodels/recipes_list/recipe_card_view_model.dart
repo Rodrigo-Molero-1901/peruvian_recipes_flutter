@@ -1,19 +1,19 @@
-import 'package:peruvian_recipes_flutter/features/recipe/domain/entitites/recipe.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/domain/entitites/recipe_card.dart';
 
-class RecipeViewModel {
+class RecipeCardViewModel {
   final String id;
   final String category;
   final String imageURL;
   final String title;
 
-  RecipeViewModel({
+  RecipeCardViewModel({
     required this.id,
     required this.category,
     required this.imageURL,
     required this.title,
   });
 
-  RecipeViewModel.fromEntity(RecipeEntity entity)
+  RecipeCardViewModel.fromEntity(RecipeCardEntity entity)
       : id = entity.id,
         category = entity.category,
         imageURL = entity.imageURL,

@@ -42,7 +42,6 @@ class AuthApi {
         password: password,
       );
       responseData = LoginResponse.fromUserCredential(response);
-      await _createUserInDatabase(response.user);
     } on FirebaseAuthException catch (_) {
       rethrow;
     }

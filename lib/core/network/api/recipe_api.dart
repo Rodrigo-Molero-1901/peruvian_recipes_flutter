@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/base_response.dart';
+import 'package:peruvian_recipes_flutter/core/network/response/carousel_recipes_list_response.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/detailed_recipe_response.dart';
-import 'package:peruvian_recipes_flutter/core/network/response/most_liked_recipes_list_response.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/recipe_response.dart';
 import 'package:peruvian_recipes_flutter/core/network/response/recipes_list_response.dart';
 import 'package:peruvian_recipes_flutter/shared/constants/app_firebase_constants.dart';
@@ -17,19 +17,19 @@ class RecipeApi {
     this._firebaseFirestore,
   );
 
-  Future<Response<MostLikedRecipesListResponse>> getMostLikedRecipes() async {
-    MostLikedRecipesListResponse? responseData;
+  Future<Response<CarouselRecipesListResponse>> getCarouselRecipes() async {
+    CarouselRecipesListResponse? responseData;
     try {
       final CollectionReference mostLikedRecipesCollection = _firebaseFirestore
           .collection(AppFirebaseConstants.mostLikedCollection);
       final QuerySnapshot querySnapshot =
           await mostLikedRecipesCollection.get();
       responseData =
-          MostLikedRecipesListResponse.fromJsonList(querySnapshot.toJsonList);
+          CarouselRecipesListResponse.fromJsonList(querySnapshot.toJsonList);
     } catch (_) {
       rethrow;
     }
-    return Response<MostLikedRecipesListResponse>(
+    return Response<CarouselRecipesListResponse>(
       data: responseData,
     );
   }
@@ -102,8 +102,9 @@ class RecipeApi {
             .doc(currentUser.uid)
             .get();
         if (userDocSnapshot.exists) {
-          final refs = List<DocumentReference>.from((userDocSnapshot.data()
-              as Map<String, dynamic>)['favorite-recipes']);
+          final refs = List<DocumentReference>.from(
+            userDocSnapshot.toJson[AppFirebaseConstants.userFavoriteRecipes],
+          );
           for (var ref in refs) {
             final DocumentSnapshot recipeSnapshot = await ref.get();
             if (recipeSnapshot.exists) {

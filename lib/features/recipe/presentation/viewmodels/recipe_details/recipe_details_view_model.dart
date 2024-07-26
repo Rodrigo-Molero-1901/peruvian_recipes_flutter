@@ -1,14 +1,20 @@
 import 'package:peruvian_recipes_flutter/features/recipe/domain/entitites/detailed_recipe.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/presentation/viewmodels/detailed_recipe_view_model.dart';
 import 'package:peruvian_recipes_flutter/shared/viewmodels/overlay_view_model.dart';
 
 class RecipeDetailsViewModel {
-  final DetailedRecipeViewModel detailedRecipeViewModel;
+  final String id;
+  final String category;
+  final String description;
+  final String title;
+  final String videoURL;
   final OverlayViewModel? overlay;
 
   RecipeDetailsViewModel.fromSuccessState({
     required DetailedRecipeEntity detailedRecipe,
     this.overlay,
-  }) : detailedRecipeViewModel =
-            DetailedRecipeViewModel.fromEntity(detailedRecipe);
+  })  : id = detailedRecipe.id,
+        category = detailedRecipe.category,
+        description = detailedRecipe.description,
+        title = detailedRecipe.title,
+        videoURL = detailedRecipe.videoURL;
 }

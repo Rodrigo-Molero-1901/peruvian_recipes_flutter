@@ -14,51 +14,62 @@ class AuthMainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTap: cubit.googleLogin,
-            child: Center(
-              child: Container(
-                height: 100,
-                width: 100,
-                color: Colors.greenAccent,
-                child: const Center(
-                  child: Text('google login'),
-                ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: cubit.googleLogin,
+          child: Center(
+            child: Container(
+              height: 100,
+              width: 100,
+              color: Colors.greenAccent,
+              child: const Center(
+                child: Text('google login'),
               ),
             ),
           ),
-          GestureDetector(
-            onTap: cubit.registerUser,
-            child: Center(
-              child: Container(
-                height: 100,
-                width: 100,
-                color: Colors.lightBlueAccent,
-                child: const Center(
-                  child: Text('register user'),
-                ),
+        ),
+        GestureDetector(
+          onTap: cubit.loginWithCredentials,
+          child: Center(
+            child: Container(
+              height: 100,
+              width: 100,
+              color: Colors.pinkAccent,
+              child: const Center(
+                child: Text('login credential'),
               ),
             ),
           ),
-          GestureDetector(
-            onTap: cubit.logout,
-            child: Center(
-              child: Container(
-                height: 100,
-                width: 100,
-                color: Colors.redAccent,
-                child: const Center(
-                  child: Text('cerrar sesion'),
-                ),
+        ),
+        GestureDetector(
+          onTap: cubit.registerUser,
+          child: Center(
+            child: Container(
+              height: 100,
+              width: 100,
+              color: Colors.lightBlueAccent,
+              child: const Center(
+                child: Text('register user'),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+        GestureDetector(
+          onTap: cubit.logout,
+          child: Center(
+            child: Container(
+              height: 100,
+              width: 100,
+              color: Colors.redAccent,
+              child: const Center(
+                child: Text('cerrar sesion'),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

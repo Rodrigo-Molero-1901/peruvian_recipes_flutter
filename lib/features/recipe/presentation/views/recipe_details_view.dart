@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:peruvian_recipes_flutter/di/injection.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipe_details_cubit.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipe_details/recipe_details_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/presentation/utils/recipe_details_view_model_extension.dart';
 import 'package:peruvian_recipes_flutter/features/recipe/presentation/views/recipe_details_main_view.dart';
 
@@ -40,13 +40,15 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
         }
       },
       builder: (context, state) {
-        return switch (state) {
-          RecipeDetailsLoading() => const SizedBox.shrink(),
-          RecipeDetailsMain(:final viewModel) => RecipeDetailsMainView(
-              viewModel: viewModel,
-              cubit: _recipeDetailsCubit,
-            ),
-        };
+        return Scaffold(
+          body: switch (state) {
+            RecipeDetailsLoading() => const Scaffold(body: SizedBox.shrink()),
+            RecipeDetailsMain(:final viewModel) => RecipeDetailsMainView(
+                viewModel: viewModel,
+                cubit: _recipeDetailsCubit,
+              ),
+          },
+        );
       },
     );
   }

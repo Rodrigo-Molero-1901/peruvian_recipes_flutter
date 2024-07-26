@@ -1,11 +1,11 @@
-class MostLikedRecipeModel {
+class CarouselRecipeModel {
   String? id;
   String? category;
   String? imageURL;
   String? title;
   int? votes;
 
-  MostLikedRecipeModel({
+  CarouselRecipeModel({
     this.id,
     this.category,
     this.imageURL,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipe_details_cubit.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/presentation/viewmodels/recipe_details_view_model.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipe_details/recipe_details_cubit.dart';
+import 'package:peruvian_recipes_flutter/features/recipe/presentation/viewmodels/recipe_details/recipe_details_view_model.dart';
 
 class RecipeDetailsMainView extends StatelessWidget {
   final RecipeDetailsViewModel viewModel;
@@ -16,18 +16,17 @@ class RecipeDetailsMainView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(viewModel.detailedRecipeViewModel.title),
+        title: Text(viewModel.title),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text(viewModel.detailedRecipeViewModel.category),
+            Text(viewModel.category),
             const SizedBox(height: 10),
-            Text(viewModel.detailedRecipeViewModel.description),
+            Text(viewModel.description),
             const SizedBox(height: 30),
             IconButton(
-              onPressed: () => cubit.saveFavoriteRecipe(
-                  recipeId: viewModel.detailedRecipeViewModel.id),
+              onPressed: () => cubit.saveFavoriteRecipe(recipeId: viewModel.id),
               icon: const Icon(Icons.plus_one),
             ),
           ],

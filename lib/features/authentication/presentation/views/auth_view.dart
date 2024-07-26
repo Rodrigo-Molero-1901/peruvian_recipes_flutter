@@ -23,6 +23,12 @@ class _AuthViewState extends State<AuthView> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _authCubit.close();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       bloc: _authCubit,
@@ -38,13 +44,15 @@ class _AuthViewState extends State<AuthView> {
         }
       },
       builder: (context, state) {
-        return switch (state) {
-          AuthLoading() => const SizedBox.shrink(),
-          AuthMain(:final viewModel) => AuthMainView(
-              viewModel: viewModel,
-              cubit: _authCubit,
-            ),
-        };
+        return Scaffold(
+          body: switch (state) {
+            AuthLoading() => const SizedBox.shrink(),
+            AuthMain(:final viewModel) => AuthMainView(
+                viewModel: viewModel,
+                cubit: _authCubit,
+              ),
+          },
+        );
       },
     );
   }
