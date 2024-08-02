@@ -49,48 +49,6 @@ class RecipeApi {
     );
   }
 
-  Future<Response<DetailedRecipeResponse>> getRecipeDetails(
-      {required String recipeId}) async {
-    DetailedRecipeResponse? responseData;
-    try {
-      final DocumentReference recipeDocument = _firebaseFirestore
-          .collection(AppFirebaseConstants.recipesCollection)
-          .doc(recipeId)
-          .collection(AppFirebaseConstants.recipeDetailsCollection)
-          .doc(AppFirebaseConstants.recipeDetailsDocument);
-      final DocumentSnapshot docSnapshot = await recipeDocument.get();
-      responseData = DetailedRecipeResponse.fromJson(docSnapshot.toJson);
-    } catch (_) {
-      rethrow;
-    }
-    return Response<DetailedRecipeResponse>(
-      data: responseData,
-    );
-  }
-
-  Future<bool> saveFavoriteRecipe({required String recipeId}) async {
-    try {
-      final currentUser = _firebaseAuth.currentUser;
-      if (currentUser != null) {
-        final DocumentReference userDocument = _firebaseFirestore
-            .collection(AppFirebaseConstants.usersCollection)
-            .doc(currentUser.uid);
-        await userDocument.update({
-          AppFirebaseConstants.userFavoriteRecipes: FieldValue.arrayUnion([
-            _firebaseFirestore
-                .collection(AppFirebaseConstants.recipesCollection)
-                .doc(recipeId),
-          ])
-        });
-        return true;
-      } else {
-        return false;
-      }
-    } catch (_) {
-      return false;
-    }
-  }
-
   Future<Response<RecipesListResponse>> getFavoriteRecipes() async {
     RecipesListResponse? responseData;
     List<RecipeResponse> favoriteRecipes = [];
@@ -123,7 +81,49 @@ class RecipeApi {
     );
   }
 
-  Future<bool> removeFavoriteRecipe({required String recipeId}) async {
+  Future<Response<DetailedRecipeResponse>> getRecipeDetails(
+      {required String recipeId}) async {
+    DetailedRecipeResponse? responseData;
+    try {
+      final DocumentReference recipeDocument = _firebaseFirestore
+          .collection(AppFirebaseConstants.recipesCollection)
+          .doc(recipeId)
+          .collection(AppFirebaseConstants.recipeDetailsCollection)
+          .doc(AppFirebaseConstants.recipeDetailsDocument);
+      final DocumentSnapshot docSnapshot = await recipeDocument.get();
+      responseData = DetailedRecipeResponse.fromJson(docSnapshot.toJson);
+    } catch (_) {
+      rethrow;
+    }
+    return Response<DetailedRecipeResponse>(
+      data: responseData,
+    );
+  }
+
+  Future<bool> saveToFavorite({required String recipeId}) async {
+    try {
+      final currentUser = _firebaseAuth.currentUser;
+      if (currentUser != null) {
+        final DocumentReference userDocument = _firebaseFirestore
+            .collection(AppFirebaseConstants.usersCollection)
+            .doc(currentUser.uid);
+        await userDocument.update({
+          AppFirebaseConstants.userFavoriteRecipes: FieldValue.arrayUnion([
+            _firebaseFirestore
+                .collection(AppFirebaseConstants.recipesCollection)
+                .doc(recipeId),
+          ])
+        });
+        return true;
+      } else {
+        return false;
+      }
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<bool> removeFromFavorite({required String recipeId}) async {
     try {
       final currentUser = _firebaseAuth.currentUser;
       if (currentUser != null) {

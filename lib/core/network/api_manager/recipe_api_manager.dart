@@ -31,6 +31,16 @@ class RecipeApiManager {
     }
   }
 
+  Future<Either<ApiError, RecipesListResponse>> getFavoriteRecipes() async {
+    try {
+      final response = await _api.recipesApi.getFavoriteRecipes();
+      if (response.data != null) return Right(response.data!);
+      return Left(ApiError.defaultError());
+    } catch (_) {
+      return Left(ApiError.defaultError());
+    }
+  }
+
   Future<Either<ApiError, DetailedRecipeResponse>> getRecipeDetails(
       {required String recipeId}) async {
     try {
@@ -43,32 +53,21 @@ class RecipeApiManager {
     }
   }
 
-  Future<Either<bool, bool>> saveFavoriteRecipe(
-      {required String recipeId}) async {
+  Future<Either<bool, bool>> saveToFavorite({required String recipeId}) async {
     try {
       final recipeHasBeenSaved =
-          await _api.recipesApi.saveFavoriteRecipe(recipeId: recipeId);
+          await _api.recipesApi.saveToFavorite(recipeId: recipeId);
       return Right(recipeHasBeenSaved);
     } catch (_) {
       return const Left(false);
     }
   }
 
-  Future<Either<ApiError, RecipesListResponse>> getFavoriteRecipes() async {
-    try {
-      final response = await _api.recipesApi.getFavoriteRecipes();
-      if (response.data != null) return Right(response.data!);
-      return Left(ApiError.defaultError());
-    } catch (_) {
-      return Left(ApiError.defaultError());
-    }
-  }
-
-  Future<Either<bool, bool>> removeFavoriteRecipe(
+  Future<Either<bool, bool>> removeFromFavorite(
       {required String recipeId}) async {
     try {
       final recipeHasBeenSaved =
-          await _api.recipesApi.removeFavoriteRecipe(recipeId: recipeId);
+          await _api.recipesApi.removeFromFavorite(recipeId: recipeId);
       return Right(recipeHasBeenSaved);
     } catch (_) {
       return const Left(false);

@@ -9,12 +9,12 @@ import 'package:peruvian_recipes_flutter/di/injection.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/domain/entitites/user.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/blocs/auth_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/authentication/presentation/views/auth_view.dart';
+import 'package:peruvian_recipes_flutter/features/detailed_recipe/presentation/blocs/detailed_recipe_cubit.dart';
+import 'package:peruvian_recipes_flutter/features/detailed_recipe/presentation/views/detailed_recipe_view.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/blocs/home_cubit.dart';
 import 'package:peruvian_recipes_flutter/features/home/presentation/views/home_view.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipe_details/recipe_details_cubit.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/presentation/blocs/recipes_list/recipes_list_cubit.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/presentation/views/recipe_details_view.dart';
-import 'package:peruvian_recipes_flutter/features/recipe/presentation/views/recipes_list_view.dart';
+import 'package:peruvian_recipes_flutter/features/recipes_list/presentation/blocs/recipes_list_cubit.dart';
+import 'package:peruvian_recipes_flutter/features/recipes_list/presentation/views/recipes_list_view.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<AuthCubit>(create: (_) => injector<AuthCubit>()),
         BlocProvider<HomeCubit>(create: (_) => injector<HomeCubit>()),
-        BlocProvider<RecipeDetailsCubit>(
-            create: (_) => injector<RecipeDetailsCubit>()),
+        BlocProvider<DetailedRecipeCubit>(
+            create: (_) => injector<DetailedRecipeCubit>()),
         BlocProvider<RecipesListCubit>(
             create: (_) => injector<RecipesListCubit>()),
       ],
@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
               name: Routes.nameRecipeDetails,
               builder: (context, state) {
                 final recipeId = state.extra! as String;
-                return RecipeDetailsView(
+                return DetailedRecipeView(
                   recipeId: recipeId,
                 );
               },
